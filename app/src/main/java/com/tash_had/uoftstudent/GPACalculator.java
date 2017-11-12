@@ -1,6 +1,7 @@
 package com.tash_had.uoftstudent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -12,22 +13,52 @@ import java.util.HashMap;
 public class GPACalculator {
     private double oldGpa;
 
+    // For courses.
+    // GradesInCategory -> Weight of Category  = gradesToWeightMap
+    // weights must add up to 100
+    public static double calculateWeightedAverage(HashMap<ArrayList<Double>, Double> gradesToWeightMap){
+        ArrayList<Double> weightedCategAvg = new ArrayList<>();
+        double validWeightSum = 0.0;
 
-    private void calculateWeightedAverage(HashMap<Double, ArrayList<Double>> weightToGradesHashMap){
+        for (ArrayList<Double> grades : gradesToWeightMap.keySet()){
+            double weight = gradesToWeightMap.get(grades);
+            if (!grades.isEmpty()){
+                // calculate average of grades in this category
+                double avg = (sumArrayList(grades))/(grades.size());
+                // multiply category average by category weight and store value
+                weightedCategAvg.add(percentAsDecimal(avg) *
+                        percentAsDecimal(weight));
+            }
+            validWeightSum += percentAsDecimal(weight);
 
-        for (double weight : weightToGradesHashMap.keySet()){
-            for (double grade : weightToGradesHashMap.get(weight))
         }
+        double sumAverages = sumArrayList(weightedCategAvg);
+        if (validWeightSum > 0.0){
+            System.out.println(validWeightSum);
+            return (sumAverages/validWeightSum)*100.0;
+        }
+        // if validWeightSum = 0, then no grades have yet been entered, so return -1.
+        return -1.0;
     }
 
+    public static double percentAsDecimal(double percent){
+        return (percent/100.0);
+    }
+
+    private static double sumArrayList(ArrayList<Double> arrayList){
+        double sum = 0.0;
+        for (double d : arrayList){
+            sum += d;
+        }
+        return sum;
+    }
     /**
-     * Return an object array with a letter grade at index 0 and a GPA at index 1, both
-     * corresponding to the given percent and credit weight
+     * Return grade information corresponding to the given percent
      *
      * @param percent a grade percentage
-     * @param creditWeight the weight of the course in which the percent was earened
+     * @return an array with the letter grade at index 0 and gpa at index 1
      */
-    private Object[] letterGradeAndGPAWithPercentAndCredits(double percent, double creditWeight){
+    public static Object[] gradeWithPercent(double percent){
         Object[][] gradeBoundsArr = {
                 {90, 100, "A+", 4.0}, {85, 89, "A", 4.0}, {80, 84, "A-", 3.7},
                 {77, 79, "B+", 3.3}, {73, 76, "B", 3.0}, {70, 72, "B-", 2.7},
@@ -40,14 +71,14 @@ public class GPACalculator {
             int upperBound = (int)gradeArr[1];
             if (isBetweenIncl(percent, lowerBound, upperBound)){
                 String letterGrade = (String)gradeArr[2];
-                double gpv = (double)gradeArr[3];
-                double gpa = gpv*creditWeight;
+                double gpv = (double)gradeArr[3]; // grade point value
 
-                return new Object[]{letterGrade, gpa};
+                return new Object[]{letterGrade, gpv};
             }
         }
-        return null;
+        return new Object[]{"N/A", -1.0};
     }
+
     /**
      * Check if a number is in within a range(inclusive)
      *
@@ -56,7 +87,7 @@ public class GPACalculator {
      * @param upperBound the upper bound of the range
      * @return is the number given within range
      * */
-    private boolean isBetweenIncl(double numToCheck, double lowerBound, double upperBound){
+    private static boolean isBetweenIncl(double numToCheck, double lowerBound, double upperBound){
         return numToCheck >= lowerBound && numToCheck <= upperBound;
     }
 }

@@ -23,12 +23,14 @@ public class Course {
 
     public Course(){
         setCategoryToAssessmentMap(new HashMap<String, ArrayList<Object[]>>());
+        setCategoryToWeightMap(new HashMap<String, Double>());
     }
 
-    public boolean addCategory(String categoryName){
+    public boolean addCategory(String categoryName, Double weight){
         ArrayList<Object[]> assesmentsArrayList = new ArrayList<>();
         if (!getCategoryToAssessmentMap().containsKey(categoryName)){
             getCategoryToAssessmentMap().put(categoryName, assesmentsArrayList);
+            addWeight(categoryName, weight);
             return true;
         }
         return false;
@@ -40,14 +42,22 @@ public class Course {
             ArrayList<Object[]> assessmentArrayList = getCategoryToAssessmentMap().get(oldName);
             getCategoryToAssessmentMap().remove(oldName);
             getCategoryToAssessmentMap().put(newName, assessmentArrayList);
+            double weight = getWeight(oldName);
+            deleteCategoryFromWeightMap(oldName);
+            addWeight(newName, weight);
             return true;
         }
         return false;
     }
 
+    public void editCategoryWeight(String categoryName, double newWeight){
+        addWeight(categoryName, newWeight);
+    }
+
     public boolean removeCategory(String categoryName){
         if (getCategoryToAssessmentMap().containsKey(categoryName)){
             getCategoryToAssessmentMap().remove(categoryName);
+            deleteCategoryFromWeightMap(categoryName);
             return true;
         }
         return false;
@@ -75,10 +85,13 @@ public class Course {
                     Double grade = newGrade == null ? (double) assessment[1] : newGrade;
                     addAssessment(categoryName, name, grade);
                     removeAssessment(categoryName, aName, (double) assessment[1]);
+                    return true;
                 }
             }
         }
+        return false;
     }
+
     public boolean removeAssessment(String categoryName, String assessmentName, double assessmentGrade){
         if (getCategoryToAssessmentMap().containsKey(categoryName)){
             ArrayList<Object[]> assessmentList = getCategoryToAssessmentMap().get(categoryName);
@@ -86,7 +99,7 @@ public class Course {
             int indexToRemove = 0;
             for (int i = 0; i < assessmentList.size(); i++){
                 Object[] assessment = assessmentList.get(i);
-                if ((assessment[0]).equals(assessmentName) && (assessment[1] == assessmentGrade)){
+                if ((assessment[0]).equals(assessmentName) && ((double) assessment[1] == assessmentGrade)){
                     indexToRemove = i;
                     removeIndex = true;
                 }
@@ -95,15 +108,36 @@ public class Course {
                 assessmentList.remove(indexToRemove);
                 return true;
             }
-            return false;
         }
-
+        return false;
     }
-    public HashMap<String, ArrayList<Object[]>> getCategoryToAssessmentMap() {
+    private HashMap<String, ArrayList<Object[]>> getCategoryToAssessmentMap() {
         return categoryToAssessmentMap;
     }
 
-    public void setCategoryToAssessmentMap(HashMap<String, ArrayList<Object[]>> categoryToAssessmentMap) {
+    private void setCategoryToAssessmentMap(HashMap<String, ArrayList<Object[]>> categoryToAssessmentMap) {
         this.categoryToAssessmentMap = categoryToAssessmentMap;
+    }
+
+    private HashMap<String, Double> getCategoryToWeightMap() {
+        return categoryToWeightMap;
+    }
+
+    private void setCategoryToWeightMap(HashMap<String, Double> categoryToWeightMap) {
+        this.categoryToWeightMap = categoryToWeightMap;
+    }
+
+    public void addWeight(String categoryName, Double weight){
+        if (getCategoryToWeightMap().containsKey(categoryName)){
+            getCategoryToWeightMap().put(categoryName, weight);
+        }
+    }
+
+    public void deleteCategoryFromWeightMap(String categoryName){
+        getCategoryToWeightMap().remove(categoryName);
+    }
+
+    public Double getWeight(String categoryName){
+        return getCategoryToWeightMap().get(categoryName);
     }
 }
