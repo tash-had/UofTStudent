@@ -15,7 +15,7 @@ public class CodeTest{
 
     @Test
     public void testGPACalc(){
-        GPACalculator g = new GPACalculator();
+        Calculator g = new Calculator();
 //        System.out.println(g.gradeWithPercent(77, 0.5)[0] + " " +
 //                g.gradeWithPercent(77, 0.5)[1]);
 
@@ -39,8 +39,8 @@ public class CodeTest{
         hm.put(d, 1.0);
         hm.put(e, 10.0);
 
-        System.out.println(GPACalculator.calculateWeightedAverage(hm));
-        Object[] o = GPACalculator.gradeWithPercent(GPACalculator.calculateWeightedAverage(hm));
+        System.out.println(Calculator.calculateWeightedAverage(hm));
+        Object[] o = Calculator.gradeWithPercent(Calculator.calculateWeightedAverage(hm));
         System.out.println(o[0] +" " + o[1]);
 
     }

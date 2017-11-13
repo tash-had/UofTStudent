@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 
 
-public class GPACalculator {
+public class Calculator {
     private double oldGpa;
 
     // For courses.
@@ -52,6 +52,7 @@ public class GPACalculator {
         }
         return sum;
     }
+
     /**
      * Return grade information corresponding to the given percent
      *
