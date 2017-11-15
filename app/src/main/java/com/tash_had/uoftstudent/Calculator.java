@@ -11,7 +11,45 @@ import java.util.HashMap;
 
 
 public class Calculator {
-    private double oldGpa;
+
+    private static double undocumentedGPA;
+    private static double undocumentedCredits;
+
+    /**
+     * Set the GPA of this student prior to using this app
+     *
+     * @param gpa the gpa
+     */
+    public static void setUndocumentedGPA(double gpa) {
+        undocumentedGPA = gpa;
+    }
+
+    /**
+     * Set the number of credits this student completed prior to using this app
+     *
+     * @param credits the number of credits
+     */
+    public static void setUndocumentedCredits(double credits) {
+        undocumentedCredits = credits;
+    }
+
+    /**
+     * Get the GPA the student had before using this app
+     *
+     * @return the gpa
+     */
+    private static double getUndocumentedGPA(){
+        return undocumentedGPA;
+    }
+
+    /**
+     * Get the # of credits the student had before using this app
+     *
+     * @return the number of credits
+     */
+    private static double getUndocumentedCredits(){
+        return undocumentedCredits;
+    }
 
     // For courses.
     // GradesInCategory -> Weight of Category  = gradesToWeightMap
@@ -28,13 +66,16 @@ public class Calculator {
                 // multiply category average by category weight and store value
                 weightedCategAvg.add(percentAsDecimal(avg) *
                         percentAsDecimal(weight));
-            }
-            validWeightSum += percentAsDecimal(weight);
+                validWeightSum += percentAsDecimal(weight);
 
+            }
         }
+        System.out.println("validWeightSum" + validWeightSum);
+        System.out.println(weightedCategAvg);
+
         double sumAverages = sumArrayList(weightedCategAvg);
         if (validWeightSum > 0.0){
-            System.out.println(validWeightSum);
+
             return (sumAverages/validWeightSum)*100.0;
         }
         // if validWeightSum = 0, then no grades have yet been entered, so return -1.
@@ -45,9 +86,10 @@ public class Calculator {
         return (percent/100.0);
     }
 
+    // Ask how to make this with <?> on bb
     private static double sumArrayList(ArrayList<Double> arrayList){
-        double sum = 0.0;
-        for (double d : arrayList){
+        Double sum = 0.0;
+        for (Double d : arrayList) {
             sum += d;
         }
         return sum;
@@ -90,5 +132,20 @@ public class Calculator {
      * */
     private static boolean isBetweenIncl(double numToCheck, double lowerBound, double upperBound){
         return numToCheck >= lowerBound && numToCheck <= upperBound;
+    }
+
+    public static double calculateGPA(Course[] courses){
+        ArrayList<Double> totals = new ArrayList<>();
+        double creditSum = 0.0;
+        for (Course course : courses){
+            double courseAverage = course.getCourseAverage();
+            double gradePointValue = (double) gradeWithPercent(courseAverage)[1];
+            double courseCreditWeight = course.getCourseCreditWeight();
+//            System.out.println(course.getCourseAverage() + " |GPV: " + gradePointValue);
+
+            creditSum += courseCreditWeight;
+            totals.add(gradePointValue * courseCreditWeight);
+        }
+        return sumArrayList(totals)*creditSum;
     }
 }

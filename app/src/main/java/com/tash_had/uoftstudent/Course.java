@@ -22,8 +22,12 @@ public class Course {
     private HashMap<String, Double> categoryToWeightMap;
 
     private String courseName;
-    private double courseWeight;
-    private double courseAverage;
+    private double courseCreditWeight;
+
+    /*
+     * TODO: Have an instace var for lettergrade/grade info?
+     *
+     */
 
     public Course(){
         setCategoryToAssessmentMap(new HashMap<String, ArrayList<Object[]>>());
@@ -53,17 +57,17 @@ public class Course {
      *
      * @return the credit weight
      */
-    public double getCourseWeight() {
-        return courseWeight;
+    public double getCourseCreditWeight() {
+        return courseCreditWeight;
     }
 
     /**
      * Set the credit weight of this course
      *
-     * @param courseWeight the weight to set
+     * @param courseCreditWeight the weight to set
      */
-    public void setCourseWeight(double courseWeight) {
-        this.courseWeight = courseWeight;
+    public void setCourseCreditWeight(double courseCreditWeight) {
+        this.courseCreditWeight = courseCreditWeight;
     }
 
     /**
@@ -73,21 +77,27 @@ public class Course {
      */
     public double getCourseAverage(){
         // Create gradesToWeightMap
-        for (String category : getCategoryToAssessmentMap().keySet()){
-            /**
-             * TODO: Implement
-             */
-        }
+        return Calculator.calculateWeightedAverage(getGradesToWeightMap());
     }
 
-
     /**
-     * Set the average in this course
+     * Get a HashMap mapping a list of grades from each category, to the weight of that category
      *
-     * @param courseAverage the average to set
+     * @return the grades to weight map
      */
-    private void setCourseAverage(double courseAverage) {
-        this.courseAverage = courseAverage;
+    private HashMap<ArrayList<Double>, Double> getGradesToWeightMap(){
+        HashMap<ArrayList<Double>, Double> gradesToWeightMap = new HashMap<>();
+        for (String category : getCategoryToAssessmentMap().keySet()){
+            ArrayList<Double> grades = new ArrayList<>();
+            ArrayList<Object[]> assessments = getCategoryToAssessmentMap().get(category);
+            if (assessments != null){
+                for (Object[] assessment : assessments){
+                    grades.add(getGradeWithAssessmentArray(assessment));
+                }
+            }
+            gradesToWeightMap.put(grades, getCategoryToWeightMap().get(category));
+        }
+        return gradesToWeightMap;
     }
 
     /**
@@ -176,12 +186,13 @@ public class Course {
         if (getCategoryToAssessmentMap().containsKey(categoryName)){
             for (int i = 0; i < assessmentList.size(); i++){
                 Object[] assessment = assessmentList.get(i);
-                String aName = (String) assessment[0];
+                String aName = getAssessmentNameWithAssessmentArray(assessment);
                 if (aName.equals(assessmentName)){
                     String name = newAssessmentName == null ? aName : newAssessmentName;
-                    Double grade = newGrade == null ? (double) assessment[1] : newGrade;
+                    Double grade = newGrade == null ? getGradeWithAssessmentArray(assessment) :
+                            newGrade;
                     addAssessment(categoryName, name, grade);
-                    removeAssessment(categoryName, aName, (double) assessment[1]);
+                    removeAssessment(categoryName, aName, getGradeWithAssessmentArray(assessment));
                     return true;
                 }
             }
@@ -204,7 +215,8 @@ public class Course {
             int indexToRemove = 0;
             for (int i = 0; i < assessmentList.size(); i++){
                 Object[] assessment = assessmentList.get(i);
-                if ((assessment[0]).equals(assessmentName) && ((double) assessment[1] == assessmentGrade)){
+                if (getAssessmentNameWithAssessmentArray(assessment).equals(assessmentName) &&
+                        (getGradeWithAssessmentArray(assessment) == assessmentGrade)){
                     indexToRemove = i;
                     removeIndex = true;
                 }
@@ -232,7 +244,8 @@ public class Course {
      *
      * @param categoryToAssessmentMap the map to set to
      */
-    private void setCategoryToAssessmentMap(HashMap<String, ArrayList<Object[]>> categoryToAssessmentMap) {
+    private void setCategoryToAssessmentMap(HashMap<String, ArrayList<Object[]>>
+                                                    categoryToAssessmentMap) {
         this.categoryToAssessmentMap = categoryToAssessmentMap;
     }
 
@@ -260,10 +273,8 @@ public class Course {
      * @param categoryName the name of the category
      * @param weight the weight of the category
      */
-    public void addCategoryWeight(String categoryName, Double weight){
-        if (getCategoryToWeightMap().containsKey(categoryName)){
-            getCategoryToWeightMap().put(categoryName, weight);
-        }
+    private void addCategoryWeight(String categoryName, Double weight){
+        getCategoryToWeightMap().put(categoryName, weight);
     }
 
     /**
@@ -294,4 +305,25 @@ public class Course {
     public Double getCategoryWeight(String categoryName){
         return getCategoryToWeightMap().get(categoryName);
     }
+
+    /**
+     * Given an array representing an assessment, return the name from that assessment
+     *
+     * @param assessmentArr the assessment
+     * @return the asessment name
+     */
+    private String getAssessmentNameWithAssessmentArray(Object[] assessmentArr){
+        return (String) assessmentArr[0];
+    }
+
+    /**
+     * Given an array representing an assessment, return the grade from that assessment
+     *
+     * @param assessmentArr the assessment
+     * @return the grade
+     */
+    private double getGradeWithAssessmentArray(Object[] assessmentArr){
+        return (double) assessmentArr[1];
+    }
+
 }
