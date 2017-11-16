@@ -3,6 +3,8 @@ package com.tash_had.uoftstudent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 /**
  * Created by tash-had on 2017-11-07.
@@ -57,25 +59,22 @@ public class Calculator {
     public static double calculateWeightedAverage(HashMap<ArrayList<Double>, Double> gradesToWeightMap){
         ArrayList<Double> weightedCategAvg = new ArrayList<>();
         double validWeightSum = 0.0;
-
+        double l = 0.0;
         for (ArrayList<Double> grades : gradesToWeightMap.keySet()){
             double weight = gradesToWeightMap.get(grades);
             if (!grades.isEmpty()){
                 // calculate average of grades in this category
                 double avg = (sumArrayList(grades))/(grades.size());
                 // multiply category average by category weight and store value
-                weightedCategAvg.add(percentAsDecimal(avg) *
-                        percentAsDecimal(weight));
+                l += (percentAsDecimal(weight)*percentAsDecimal(avg));
+                weightedCategAvg.add((percentAsDecimal(avg) *
+                        percentAsDecimal(weight)));
                 validWeightSum += percentAsDecimal(weight);
 
             }
         }
-        System.out.println("validWeightSum" + validWeightSum);
-        System.out.println(weightedCategAvg);
-
         double sumAverages = sumArrayList(weightedCategAvg);
         if (validWeightSum > 0.0){
-
             return (sumAverages/validWeightSum)*100.0;
         }
         // if validWeightSum = 0, then no grades have yet been entered, so return -1.
@@ -102,6 +101,7 @@ public class Calculator {
      * @return an array with the letter grade at index 0 and gpa at index 1
      */
     public static Object[] gradeWithPercent(double percent){
+        percent = Math.round(percent);
         Object[][] gradeBoundsArr = {
                 {90, 100, "A+", 4.0}, {85, 89, "A", 4.0}, {80, 84, "A-", 3.7},
                 {77, 79, "B+", 3.3}, {73, 76, "B", 3.0}, {70, 72, "B-", 2.7},
@@ -109,6 +109,7 @@ public class Calculator {
                 {57, 59, "D+", 1.3}, {53, 56, "D", 1.0}, {50, 52, "D-", 0.7},
                 {0, 49, "F", 0.0}
         };
+
         for (Object[] gradeArr : gradeBoundsArr){
             int lowerBound = (int)gradeArr[0];
             int upperBound = (int)gradeArr[1];
@@ -141,11 +142,10 @@ public class Calculator {
             double courseAverage = course.getCourseAverage();
             double gradePointValue = (double) gradeWithPercent(courseAverage)[1];
             double courseCreditWeight = course.getCourseCreditWeight();
-//            System.out.println(course.getCourseAverage() + " |GPV: " + gradePointValue);
 
             creditSum += courseCreditWeight;
             totals.add(gradePointValue * courseCreditWeight);
         }
-        return sumArrayList(totals)*creditSum;
+        return sumArrayList(totals)/creditSum;
     }
 }

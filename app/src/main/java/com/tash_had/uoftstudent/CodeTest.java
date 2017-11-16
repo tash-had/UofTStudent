@@ -43,75 +43,84 @@ public class CodeTest{
 //        Object[] o = Calculator.gradeWithPercent(Calculator.calculateWeightedAverage(hm));
 //        System.out.println(o[0] +" " + o[1]);
 //
-        Course csc207 = new Course();
-        csc207.addCategory("Midterm", 10.0);
-        csc207.addAssessment("Midterm", "Midterm", 96.00);
 
-        csc207.addCategory("Final", 40.0);
+        // Add Random Entries
+        Course course1 = new Course("course1", 0.5);
+        course1.addCategory("Midterm", 10.0);
+        course1.addAssessment("Midterm", "Midterm", 96.00);
 
-        csc207.addCategory("A1", 5.0);
-        csc207.addAssessment("A1", "a1", 100.0);
+        course1.addCategory("Final", 40.0);
 
-        csc207.addCategory("A2", 10.0);
+        course1.addCategory("A1", 5.0);
+        course1.addAssessment("A1", "a1", 100.0);
 
-        csc207.addCategory("Lab", 8.0);
-        csc207.addAssessment("Lab", "lab1", 100.0);
-        csc207.addAssessment("Lab", "lab2", 100.0);
-        csc207.addAssessment("Lab", "lab3", 100.0);
-        csc207.addAssessment("Lab", "lab4", 100.0);
+        course1.addCategory("A2", 10.0);
 
-        csc207.addCategory("PP1", 10.0);
-        csc207.addCategory("PP2", 17.0);
+        course1.addCategory("X", 8.0);
+        course1.addAssessment("X", "X1", 100.0);
+        course1.addAssessment("X", "X2", 100.0);
+        course1.addAssessment("X", "X3", 100.0);
+        course1.addAssessment("X", "X4", 100.0);
 
-        Course csc236 = new Course();
-        csc236.addCategory("PS1", 15.0);
-        csc236.addAssessment("PS1", "ps1", 89.0);
+        course1.addCategory("randAssignment1", 10.0);
+        course1.addCategory("randAssignment2", 17.0);
 
-        csc236.addCategory("PS2", 15.0);
-        csc236.addCategory("PS3", 15.0);
+        Course course2 = new Course("course2", 0.5);
+        course2.addCategory("a1", 10.0);
+        course2.addAssessment("a1", "a1", 91.89);
+        course2.addCategory("a2", 10.0);
+        course2.addAssessment("a2","a2", 40.0);
+        course2.addCategory("a3", 10.0);
+        course2.addCategory("midterm", 30.0);
+        course2.addAssessment("midterm", "m1", 59.0);
+        course2.addCategory("final", 40.0);
 
-        csc236.addCategory("Final", 40.0);
 
-        csc236.addCategory("EX1", 1.0);
-        csc236.addAssessment("EX1", "ex1", 90.0);
+        Course course3 = new Course("course3", 0.5);
+        course3.addCategory("test1", 20.0);
+        course3.addAssessment("test1", "t1", 51.28);
 
-        csc236.addCategory("EX2", 1.0);
-        csc236.addAssessment("EX2", "ex2", 45.0);
+        course3.addCategory("test2", 20.0);
 
-        csc236.addCategory("EX3", 1.0);
-        csc236.addAssessment("EX3", "ex3", 100.0);
+        course3.addCategory("X1", 10.0);
+        course3.addAssessment("X1", "X1", 85.0);
 
-        csc236.addCategory("EX4", 1.0);
-        csc236.addCategory("EX5", 1.0);
+        course3.addCategory("X2", 10.0);
 
-        csc236.addCategory("Midterm", 10.0);
-        csc236.addAssessment("Midterm", "midterm", 70.0);
+        course3.addCategory("final", 35.0);
 
-        Course psy270 = new Course();
-        psy270.addCategory("test1", 20.0);
-        psy270.addAssessment("test1", "t1", 51.28);
+        course3.addCategory("assignment", 4.0);
+        course3.addAssessment("assignment", "assignment", 100.0);
 
-        psy270.addCategory("test2", 20.0);
-        psy270.addCategory("lab1", 10.0);
-        psy270.addAssessment("lab1", "lab1", 85.0);
-        psy270.addCategory("lab2", 10.0);
-        psy270.addCategory("final", 35.0);
-        psy270.addCategory("tophat", 4.0);
-        psy270.addAssessment("tophat", "tophat", 100.0);
-        psy270.addCategory("other", 1.0);
-        psy270.addAssessment("other", "other", 100.0);
+        course3.addCategory("other", 1.0);
+        course3.addAssessment("other", "other", 100.0);
 
-        Course sta247 = new Course();
-        sta247.addCategory("a1", 10.0);
-        sta247.addAssessment("a1", "a1", 91.89);
-        sta247.addCategory("a2", 10.0);
-        sta247.addAssessment("a2","a2", 45.0);
-        sta247.addCategory("a3", 10.0);
-        sta247.addCategory("midterm", 20.0);
-        sta247.addAssessment("midterm", "m1", 59.0);
-        sta247.addCategory("final", 40.0);
+        Course course4 = new Course("course4", 0.5);
+        course4.addCategory("PS1", 15.0);
+        course4.addAssessment("PS1", "ps1", 89.0);
 
-        Course[] courses ={csc236};
+        course4.addCategory("PS2", 15.0);
+        course4.addCategory("PS3", 15.0);
+
+        course4.addCategory("Final", 40.0);
+
+        course4.addCategory("onepercentassignment1", 1.0);
+        course4.addAssessment("onepercentassignment1", "onepercentassignment1", 90.0);
+
+        course4.addCategory("onepercentassignment2", 1.0);
+        course4.addAssessment("onepercentassignment2", "onepercentassignment2", 45.0);
+
+        course4.addCategory("onepercentassignment3", 1.0);
+        course4.addAssessment("onepercentassignment3", "onepercentassignment3", 100.0);
+
+        course4.addCategory("onepercentassignment4", 1.0);
+        course4.addCategory("onepercentassignment5", 1.0);
+
+        course4.addCategory("Midterm", 10.0);
+        course4.addAssessment("Midterm", "midterm", 70.0);
+
+
+        Course[] courses ={course1, course2, course3, course4};
         System.out.println(Calculator.calculateGPA(courses));
 
 

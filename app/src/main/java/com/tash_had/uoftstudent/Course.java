@@ -29,9 +29,11 @@ public class Course {
      *
      */
 
-    public Course(){
+    public Course(String courseName, double courseCreditWeight){
         setCategoryToAssessmentMap(new HashMap<String, ArrayList<Object[]>>());
         setCategoryToWeightMap(new HashMap<String, Double>());
+        setCourseName(courseName);
+        setCourseCreditWeight(courseCreditWeight);
     }
 
     /**
