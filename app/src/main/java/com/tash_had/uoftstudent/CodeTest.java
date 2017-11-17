@@ -4,7 +4,9 @@ import org.junit.Test;
 import org.junit.runners.JUnit4;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by tash-had on 2017-11-07.
@@ -118,7 +120,6 @@ public class CodeTest{
 
         course4.addCategory("Midterm", 10.0);
         course4.addAssessment("Midterm", "midterm", 70.0);
-
 
         Course[] courses ={course1, course2, course3, course4};
         System.out.println(Calculator.calculateGPA(courses));

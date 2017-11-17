@@ -17,6 +17,9 @@ public class Calculator {
     private static double undocumentedGPA;
     private static double undocumentedCredits;
 
+    /*
+         TODO: Calculate with Old grades
+     */
     /**
      * Set the GPA of this student prior to using this app
      *
@@ -59,14 +62,12 @@ public class Calculator {
     public static double calculateWeightedAverage(HashMap<ArrayList<Double>, Double> gradesToWeightMap){
         ArrayList<Double> weightedCategAvg = new ArrayList<>();
         double validWeightSum = 0.0;
-        double l = 0.0;
         for (ArrayList<Double> grades : gradesToWeightMap.keySet()){
             double weight = gradesToWeightMap.get(grades);
             if (!grades.isEmpty()){
                 // calculate average of grades in this category
                 double avg = (sumArrayList(grades))/(grades.size());
                 // multiply category average by category weight and store value
-                l += (percentAsDecimal(weight)*percentAsDecimal(avg));
                 weightedCategAvg.add((percentAsDecimal(avg) *
                         percentAsDecimal(weight)));
                 validWeightSum += percentAsDecimal(weight);
@@ -120,7 +121,7 @@ public class Calculator {
                 return new Object[]{letterGrade, gpv};
             }
         }
-        return new Object[]{"N/A", -1.0};
+        return new Object[]{"N/A", 0};
     }
 
     /**
@@ -138,13 +139,23 @@ public class Calculator {
     public static double calculateGPA(Course[] courses){
         ArrayList<Double> totals = new ArrayList<>();
         double creditSum = 0.0;
+        double oldGPA = getUndocumentedGPA();
+        double oldCredits = getUndocumentedCredits();
+
         for (Course course : courses){
             double courseAverage = course.getCourseAverage();
-            double gradePointValue = (double) gradeWithPercent(courseAverage)[1];
-            double courseCreditWeight = course.getCourseCreditWeight();
+            Object[] gradeInfo = gradeWithPercent(courseAverage);
 
-            creditSum += courseCreditWeight;
-            totals.add(gradePointValue * courseCreditWeight);
+            if (!course.isCreditNoCredit() && ! gradeInfo[0].equals("N/A")){
+                double gradePointValue = (double) gradeInfo[1];
+                double courseCreditWeight = course.getCourseCreditWeight();
+                creditSum += courseCreditWeight;
+                totals.add(gradePointValue * courseCreditWeight);
+            }
+        }
+        if (oldGPA > 0 && oldCredits > 0){
+            creditSum += oldCredits;
+            totals.add(oldGPA * oldCredits);
         }
         return sumArrayList(totals)/creditSum;
     }

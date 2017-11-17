@@ -24,6 +24,8 @@ public class Course {
     private String courseName;
     private double courseCreditWeight;
 
+    private boolean creditNoCredit;
+
     /*
      * TODO: Have an instace var for lettergrade/grade info?
      *
@@ -60,7 +62,11 @@ public class Course {
      * @return the credit weight
      */
     public double getCourseCreditWeight() {
-        return courseCreditWeight;
+        if (isCreditNoCredit()){
+            return 0;
+        }else {
+            return this.courseCreditWeight;
+        }
     }
 
     /**
@@ -87,17 +93,17 @@ public class Course {
      *
      * @return the grades to weight map
      */
-    private HashMap<ArrayList<Double>, Double> getGradesToWeightMap(){
+    private HashMap<ArrayList<Double>, Double> getGradesToWeightMap() {
         HashMap<ArrayList<Double>, Double> gradesToWeightMap = new HashMap<>();
-        for (String category : getCategoryToAssessmentMap().keySet()){
+        for (String category : getCategoryToAssessmentMap().keySet()) {
             ArrayList<Double> grades = new ArrayList<>();
             ArrayList<Object[]> assessments = getCategoryToAssessmentMap().get(category);
-            if (assessments != null){
-                for (Object[] assessment : assessments){
+            if (assessments != null) {
+                for (Object[] assessment : assessments) {
                     grades.add(getGradeWithAssessmentArray(assessment));
                 }
+                gradesToWeightMap.put(grades, getCategoryToWeightMap().get(category));
             }
-            gradesToWeightMap.put(grades, getCategoryToWeightMap().get(category));
         }
         return gradesToWeightMap;
     }
@@ -110,10 +116,9 @@ public class Course {
      * @return true if the category was added, false if it already exists
      */
     public boolean addCategory(String categoryName, Double weight){
-        ArrayList<Object[]> assesmentsArrayList = new ArrayList<>();
         if (!getCategoryToAssessmentMap().containsKey(categoryName)){
-            getCategoryToAssessmentMap().put(categoryName, assesmentsArrayList);
-            addCategoryWeight(categoryName, weight);
+            getCategoryToAssessmentMap().put(categoryName, new ArrayList<Object[]>());
+            addCategoryWithWeight(categoryName, weight);
             return true;
         }
         return false;
@@ -134,7 +139,7 @@ public class Course {
             getCategoryToAssessmentMap().put(newName, assessmentArrayList);
             double weight = getCategoryWeight(oldName);
             deleteCategoryFromWeightMap(oldName);
-            addCategoryWeight(newName, weight);
+            addCategoryWithWeight(newName, weight);
             return true;
         }
         return false;
@@ -275,7 +280,7 @@ public class Course {
      * @param categoryName the name of the category
      * @param weight the weight of the category
      */
-    private void addCategoryWeight(String categoryName, Double weight){
+    private void addCategoryWithWeight(String categoryName, Double weight){
         getCategoryToWeightMap().put(categoryName, weight);
     }
 
@@ -286,7 +291,7 @@ public class Course {
      * @param newWeight the new weight of the category
      */
     public void editCategoryWeight(String categoryName, double newWeight){
-        addCategoryWeight(categoryName, newWeight);
+        addCategoryWithWeight(categoryName, newWeight);
     }
 
     /**
@@ -326,6 +331,18 @@ public class Course {
      */
     private double getGradeWithAssessmentArray(Object[] assessmentArr){
         return (double) assessmentArr[1];
+    }
+
+    /**
+     * Get whether this course is credit/no-credit (marks won't be included in calculations)
+     * @return
+     */
+    public boolean isCreditNoCredit() {
+        return creditNoCredit;
+    }
+
+    public void setCreditNoCredit(boolean creditNoCredit) {
+        this.creditNoCredit = creditNoCredit;
     }
 
 }
