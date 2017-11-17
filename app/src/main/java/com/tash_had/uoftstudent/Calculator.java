@@ -1,5 +1,8 @@
 package com.tash_had.uoftstudent;
 
+import android.support.annotation.Nullable;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -136,7 +139,7 @@ public class Calculator {
         return numToCheck >= lowerBound && numToCheck <= upperBound;
     }
 
-    public static double calculateGPA(Course[] courses){
+    public static double calculateGPA(Course[] courses, boolean cumulative){
         ArrayList<Double> totals = new ArrayList<>();
         double creditSum = 0.0;
         double oldGPA = getUndocumentedGPA();
@@ -153,10 +156,12 @@ public class Calculator {
                 totals.add(gradePointValue * courseCreditWeight);
             }
         }
-        if (oldGPA > 0 && oldCredits > 0){
+        if (oldGPA > 0 && oldCredits > 0 && cumulative){
             creditSum += oldCredits;
             totals.add(oldGPA * oldCredits);
         }
-        return sumArrayList(totals)/creditSum;
+        DecimalFormat gpaFormatter = new DecimalFormat("#.##");
+        double gpa = sumArrayList(totals)/creditSum;
+        return Double.valueOf(gpaFormatter.format(gpa));
     }
 }

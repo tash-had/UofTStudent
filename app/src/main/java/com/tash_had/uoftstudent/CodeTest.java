@@ -121,8 +121,11 @@ public class CodeTest{
         course4.addCategory("Midterm", 10.0);
         course4.addAssessment("Midterm", "midterm", 70.0);
 
+        Calculator.setUndocumentedCredits(4.5);
+        Calculator.setUndocumentedGPA(2.51);
+
         Course[] courses ={course1, course2, course3, course4};
-        System.out.println(Calculator.calculateGPA(courses));
+        System.out.println(Calculator.calculateGPA(courses, true));
 
 
 
