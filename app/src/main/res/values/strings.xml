@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">UofT Student</string>
+
+    <string name="course_card_title_default">Card Title</string>
+    <string name="course_card_subtitle_default">Card Subtitle</string>
+    <string name="course_card_button_default">Action</string>
 </resources>
