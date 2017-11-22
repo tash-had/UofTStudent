@@ -1,9 +1,13 @@
 package com.tash_had.uoftstudent;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -18,6 +22,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 public class MainActivity extends AppCompatActivity {
+    private Drawer homeScreenDrawer;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +34,21 @@ public class MainActivity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.home_screen_toolbar);
 
-        homeScreenToolBar.setTitleTextColor(Color.WHITE);
+        homeScreenDrawer = buildNavDrawer(homeScreenToolBar, buildAccountHeader(),
+                buildDrawerItem("Home", MainActivity.class, true),
+                buildDrawerItem("Courses", MainActivity.class, false),
+                buildDrawerItem("Settings", MainActivity.class, false));
 
-        setSupportActionBar(homeScreenToolBar);
-        ActionBar actionBar = getSupportActionBar();
+        mRecyclerView = findViewById(R.id.main_activity_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
 
-        Drawer homeScreenDrawer = buildNavDrawer(homeScreenToolBar, buildAccountHeader(), buildDrawerItems());
+        // Use a layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        String[] mDataSet = {"Course 1", "Course 2", "Course 3", "Course 4"};
+        mAdapter = new MyCoursesAdapter(mDataSet);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
     private Drawer buildNavDrawer(Toolbar toolbar, AccountHeader accountHeader, IDrawerItem ... drawerItems){
@@ -49,30 +66,31 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
-    private IDrawerItem[] buildDrawerItems(){
-        IDrawerItem home = new PrimaryDrawerItem().withName("Home")
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-            @Override
-            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                return false;
-            }
-        });
-        IDrawerItem courses = new SecondaryDrawerItem().withName("Courses")
-                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        return false;
-                    }
-                });
-        IDrawerItem settings = new SecondaryDrawerItem().withName("Settings")
+    private IDrawerItem buildDrawerItem(String itemName, final Class classToLoad, boolean primaryItem){
+        if (primaryItem){
+            return new PrimaryDrawerItem().withName(itemName).withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                @Override
+                public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                    startNewActivity(classToLoad);
+                    homeScreenDrawer.closeDrawer();
+                    return true;
+                }
+            });
+        }
+        return new SecondaryDrawerItem().withName(itemName)
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        return false;
+                        startNewActivity(classToLoad);
+                        homeScreenDrawer.closeDrawer();
+                        return true;
                     }
                 });
-        return new IDrawerItem[]{home, courses, settings};
+    }
 
+    private void startNewActivity(Class activityToLoad){
+        Intent changeActivityIntent = new Intent(MainActivity.this, activityToLoad);
+        startActivity(changeActivityIntent);
     }
 
     private AccountHeader buildAccountHeader(){

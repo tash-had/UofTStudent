@@ -17,20 +17,20 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/img_main_card_1"
+            android:id="@+id/course_card_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background=""
             android:adjustViewBounds="true"
+            android:contentDescription="@string/course_card_content_desc"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tv_card_main_1_title"
+            android:id="@+id/course_card_title"
             style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img_main_card_1"
+            android:layout_below="@id/course_card_img"
             android:layout_marginEnd="@dimen/card_title_margin"
             android:layout_marginStart="@dimen/card_title_margin"
             android:layout_marginTop="@dimen/card_title_margin_top"
@@ -38,37 +38,48 @@
             android:textColor="@color/primary_text" />
 
         <TextView
-            android:id="@+id/tv_card_main1_subtitle"
+            android:id="@+id/course_card_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_card_main_1_title"
+            android:layout_below="@id/course_card_title"
             android:layout_marginBottom="@dimen/card_subtitle_margin"
             android:layout_marginEnd="@dimen/card_subtitle_margin"
             android:layout_marginStart="@dimen/card_subtitle_margin"
             android:layout_marginTop="@dimen/card_button_margin"
-            android:text="@string/course_card_subtitle_default" />
+            android:text="@string/course_card_detail_default" />
 
         <Button
-            android:id="@+id/btn_card_main1_action1"
+            android:id="@+id/course_card_btn_1"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_card_main1_subtitle"
+            android:layout_below="@id/course_card_detail"
             android:layout_margin="@dimen/card_button_margin"
             android:text="@string/course_card_button_default"
             android:textColor="@color/colorAccent" />
 
         <Button
-            android:id="@+id/btn_card_main1_action2"
+            android:id="@+id/course_card_btn_2"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_card_main1_subtitle"
+            android:layout_below="@id/course_card_detail"
             android:layout_marginBottom="@dimen/card_button_margin"
             android:layout_marginTop="@dimen/card_button_margin"
-            android:layout_toEndOf="@id/btn_card_main1_action1"
-            android:layout_toRightOf="@id/btn_card_main1_action1"
+            android:layout_toEndOf="@id/course_card_btn_1"
+            android:layout_toRightOf="@id/course_card_btn_1"
             android:text="@string/course_card_button_default"
             android:textColor="@color/colorAccent" />
+
+        <ImageView
+            android:id="@+id/course_card_icon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_toEndOf="@+id/course_card_btn_2"
+            android:layout_toRightOf="@+id/course_card_btn_2"
+            card_view:srcCompat="@drawable/g_letter_icon" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>
