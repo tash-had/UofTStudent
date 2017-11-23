@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Set test student
+        SessionData.sessionStudent = CodeTest.testStudent();
+
         android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.home_screen_toolbar);
 
         homeScreenDrawer = buildNavDrawer(homeScreenToolBar, buildAccountHeader(),
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         // Use a layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        String[] mDataSet = {"Course 1", "Course 2", "Course 3", "Course 4"};
-        mAdapter = new MyCoursesAdapter(mDataSet);
+
+        mAdapter = new MyCoursesAdapter((Course[]) SessionData.getSessionStudent().getCourses());
         mRecyclerView.setAdapter(mAdapter);
 
     }

@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/course_card_detail"
             android:layout_margin="@dimen/card_button_margin"
-            android:text="@string/course_card_button_default"
+            android:text="@string/course_card_button_1_text"
             android:textColor="@color/colorAccent" />
 
         <Button
@@ -68,13 +68,13 @@
             android:layout_marginTop="@dimen/card_button_margin"
             android:layout_toEndOf="@id/course_card_btn_1"
             android:layout_toRightOf="@id/course_card_btn_1"
-            android:text="@string/course_card_button_default"
+            android:text="@string/course_card_button_2_text"
             android:textColor="@color/colorAccent" />
 
         <ImageView
             android:id="@+id/course_card_icon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="26dp"
             android:layout_marginStart="26dp"

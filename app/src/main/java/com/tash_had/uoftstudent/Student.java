@@ -7,5 +7,17 @@ import java.util.ArrayList;
  */
 
 public class Student {
-    public ArrayList<Course> courses;
+    private ArrayList<Course> courses;
+
+    public Student(String name){
+        courses = new ArrayList<>();
+    }
+
+    public Object[] getCourses() {
+        return courses.toArray(new Course[courses.size()]);
+    }
+
+    public void addNewCourse(Course course){
+        courses.add(course);
+    }
 }

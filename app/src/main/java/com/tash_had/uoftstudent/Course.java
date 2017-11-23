@@ -26,16 +26,19 @@ public class Course {
 
     private boolean creditNoCredit;
 
+    private Student student;
     /*
-     * TODO: Have an instace var for lettergrade/grade info?
-     *
+     * TODO:
+     * Fix lint errors
      */
 
-    public Course(String courseName, double courseCreditWeight){
+    public Course(String courseName, double courseCreditWeight, Student student){
         setCategoryToAssessmentMap(new HashMap<String, ArrayList<Object[]>>());
         setCategoryToWeightMap(new HashMap<String, Double>());
         setCourseName(courseName);
         setCourseCreditWeight(courseCreditWeight);
+        this.student = student;
+        this.student.addNewCourse(this);
     }
 
     /**
@@ -319,7 +322,7 @@ public class Course {
      * @param assessmentArr the assessment
      * @return the asessment name
      */
-    private String getAssessmentNameWithAssessmentArray(Object[] assessmentArr){
+    public String getAssessmentNameWithAssessmentArray(Object[] assessmentArr){
         return (String) assessmentArr[0];
     }
 
@@ -329,7 +332,7 @@ public class Course {
      * @param assessmentArr the assessment
      * @return the grade
      */
-    private double getGradeWithAssessmentArray(Object[] assessmentArr){
+    public double getGradeWithAssessmentArray(Object[] assessmentArr){
         return (double) assessmentArr[1];
     }
 
@@ -343,6 +346,10 @@ public class Course {
 
     public void setCreditNoCredit(boolean creditNoCredit) {
         this.creditNoCredit = creditNoCredit;
+    }
+
+    public ArrayList<Object[]> getCategoryAssessments(String category){
+        return getCategoryToAssessmentMap().get(category);
     }
 
 }

@@ -13,7 +13,7 @@ import android.widget.TextView;
  */
 
 class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder> {
-    private String[] mDataset;
+    private Course[] courses;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -24,12 +24,33 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.courseTitle.setText(mDataset[position]);
+        holder.courseTitle.setText(courses[position].getCourseName());
+        holder.courseDetail.setText("Next class goes here?");
+
+        double courseAvg = courses[position].getCourseAverage();
+        String grade = (String) Calculator.gradeWithPercent(courseAvg)[0];
+        switch (grade.substring(0, 1)){
+            case "A":
+                holder.courseIcon.setImageResource(R.drawable.a_letter_icon);
+                break;
+            case "B":
+                holder.courseIcon.setImageResource(R.drawable.b_letter_icon);
+                break;
+            case "C":
+                holder.courseIcon.setImageResource(R.drawable.c_letter_icon);
+                break;
+            case "D":
+                holder.courseIcon.setImageResource(R.drawable.d_letter_icon);
+                break;
+            case "F":
+                holder.courseIcon.setImageResource(R.drawable.f_letter_icon);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return courses.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -50,8 +71,8 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         }
     }
 
-    public MyCoursesAdapter(String[] myDataset) {
-        mDataset = myDataset;
+    public MyCoursesAdapter(Course[] courses) {
+        this.courses = courses;
     }
 
 }
