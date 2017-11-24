@@ -25,7 +25,6 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.courseTitle.setText(courses[position].getCourseName());
-        holder.courseDetail.setText("Next class goes here?");
 
         double courseAvg = courses[position].getCourseAverage();
         String grade = (String) Calculator.gradeWithPercent(courseAvg)[0];
@@ -46,6 +45,8 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
                 holder.courseIcon.setImageResource(R.drawable.f_letter_icon);
                 break;
         }
+        String courseDetailText = Double.toString(courseAvg) + " | " + grade;
+        holder.courseDetail.setText(courseDetailText);
     }
 
     @Override

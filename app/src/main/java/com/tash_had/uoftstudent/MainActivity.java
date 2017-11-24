@@ -3,12 +3,15 @@ package com.tash_had.uoftstudent;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -27,21 +30,33 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    /*
+    TODO: Use Acorn API to ask user for course reviews for previous courses taken + import grades
+    TODO: Add pictures to homescreen recyclerview to make it less plain
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Toolbar
+        android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.home_screen_toolbar);
+        homeScreenToolBar.setTitle("Home");
+        homeScreenToolBar.setTitleTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
+
         // Set test student
         SessionData.sessionStudent = CodeTest.testStudent();
-
-        android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.home_screen_toolbar);
 
         homeScreenDrawer = buildNavDrawer(homeScreenToolBar, buildAccountHeader(),
                 buildDrawerItem("Home", MainActivity.class, true),
                 buildDrawerItem("Courses", MainActivity.class, false),
                 buildDrawerItem("Settings", MainActivity.class, false));
 
+        prepRecyclerView();
+    }
+
+    private void prepRecyclerView(){
+        // Setup recyclerview
         mRecyclerView = findViewById(R.id.main_activity_recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
@@ -51,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new MyCoursesAdapter((Course[]) SessionData.getSessionStudent().getCourses());
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     private Drawer buildNavDrawer(Toolbar toolbar, AccountHeader accountHeader, IDrawerItem ... drawerItems){
