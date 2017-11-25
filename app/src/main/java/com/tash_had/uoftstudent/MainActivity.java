@@ -123,4 +123,9 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build();
     }
+
+    public void btnClick(View view) {
+        Intent i = new Intent(MainActivity.this, AddAssessment.class);
+        startActivity(i);
+    }
 }
