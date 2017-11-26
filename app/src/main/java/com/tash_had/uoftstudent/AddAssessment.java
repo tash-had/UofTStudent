@@ -12,7 +12,9 @@ import android.widget.EditText;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.rengwuxian.materialedittext.validation.RegexpValidator;
 
-
+/*
+TODO: LEARN https://developer.android.com/training/transitions/index.html !
+ */
 public class AddAssessment extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
