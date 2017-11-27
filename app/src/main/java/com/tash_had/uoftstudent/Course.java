@@ -264,7 +264,7 @@ public class Course {
      *
      * @return a hashmap mapping category names in this course to their corresponding weights
      */
-    private HashMap<String, Double> getCategoryToWeightMap() {
+    public HashMap<String, Double> getCategoryToWeightMap() {
         return categoryToWeightMap;
     }
 

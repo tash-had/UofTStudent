@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
-    android:id="@+id/card_about_source_licenses"
+    android:id="@+id/course_add_category_card_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/main_card_margin_vertical"
@@ -48,16 +48,34 @@
             app:met_floatingLabel="highlight"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/categoryNameEt"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="44dp" />
 
-        <ImageView
-            android:id="@+id/img_main_card2_favorite"
+        <Button
+            android:id="@+id/addCategoryDoneBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:padding="8dp"
-            android:src="@mipmap/ic_done_black_24dp" />
+            android:layout_marginBottom="23dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="22dp"
+            android:backgroundTint="@color/white"
+            android:text="Done"
+            android:textColor="@color/primary"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/categoryWeightEt"
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="16dp" />
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/imageButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:layout_editor_absoluteX="294dp"-->
+            <!--app:layout_editor_absoluteY="19dp"-->
+            <!--card_view:srcCompat="@drawable/ic_done_black_64dp_1x" />-->
 
     </android.support.constraint.ConstraintLayout>
 

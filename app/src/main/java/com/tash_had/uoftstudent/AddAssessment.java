@@ -1,25 +1,23 @@
 package com.tash_had.uoftstudent;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.rengwuxian.materialedittext.validation.RegexpValidator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 /*
 TODO: LEARN https://developer.android.com/training/transitions/index.html !
  */
 public class AddAssessment extends AppCompatActivity{
+    private RecyclerView courseCategoriesRecyclerView;
+    private RecyclerView.LayoutManager courseCategoriesLayoutManager;
+    private RecyclerView.Adapter courseCategoriesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form);
+        setContentView(R.layout.add_course_view);
 
         android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.form_toolbar);
         homeScreenToolBar.setTitle("");
@@ -30,6 +28,14 @@ public class AddAssessment extends AppCompatActivity{
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        courseCategoriesRecyclerView = findViewById(R.id.courseCategoriesRecyclerView);
+
+        courseCategoriesLayoutManager = new LinearLayoutManager(this);
+        courseCategoriesRecyclerView.setLayoutManager(courseCategoriesLayoutManager);
+
+        courseCategoriesAdapter = new CourseCategoryAdapter(((Course[]) SessionData.getSessionStudent().getCourses())[0].getCategoryToWeightMap());
+        courseCategoriesRecyclerView.setAdapter(courseCategoriesAdapter);
     }
 
 
