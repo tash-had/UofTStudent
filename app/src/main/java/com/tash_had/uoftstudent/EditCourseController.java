@@ -1,5 +1,6 @@
 package com.tash_had.uoftstudent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 /*
 TODO: LEARN https://developer.android.com/training/transitions/index.html !
  */
-public class AddAssessment extends AppCompatActivity{
+public class EditCourseController extends AppCompatActivity{
     private RecyclerView courseCategoriesRecyclerView;
     private RecyclerView.LayoutManager courseCategoriesLayoutManager;
     private RecyclerView.Adapter courseCategoriesAdapter;
@@ -18,6 +19,7 @@ public class AddAssessment extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_course_view);
+
 
         android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.form_toolbar);
         homeScreenToolBar.setTitle("");
@@ -29,6 +31,15 @@ public class AddAssessment extends AppCompatActivity{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        Intent intentRecieved = getIntent();
+        if (intentRecieved.getExtras() != null && intentRecieved.getExtras().containsKey("purpose")){
+            String purpose = (String) intentRecieved.getExtras().get("purpose");
+
+            if (purpose != null && purpose.equals("edit")){
+                if
+            }
+
+        }
         courseCategoriesRecyclerView = findViewById(R.id.courseCategoriesRecyclerView);
 
         courseCategoriesLayoutManager = new LinearLayoutManager(this);
@@ -51,4 +62,7 @@ public class AddAssessment extends AppCompatActivity{
 //            }
 //        });
 //    }
+    public enum CourseViewPurpose{
+        ADD_COURSE, EDIT_COURSE
+    }
 }

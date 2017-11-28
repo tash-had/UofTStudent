@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarStyle="outsideOverlay"
-    tools:context=".AddAssessment">
+    tools:context=".EditCourseController">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/form_toolbar"
@@ -41,7 +41,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course Name"
+            android:hint="@string/course_name_placeholder"
             android:textSize="34sp"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
@@ -61,7 +61,7 @@
         <com.rengwuxian.materialedittext.MaterialEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course Weight"
+            android:hint="@string/course_weight_placeholder"
             app:met_baseColor="@android:color/white"
             app:met_floatingLabel="highlight"
             app:met_floatingLabelTextColor="@color/white"
@@ -69,18 +69,18 @@
             app:met_primaryColor="@color/white" />
     </LinearLayout>
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/materialEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:hint="Highlight Floating Label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:met_floatingLabel="highlight" />
+    <!--<com.rengwuxian.materialedittext.MaterialEditText-->
+        <!--android:id="@+id/materialEditText"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:hint="Highlight Floating Label"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/linearLayout"-->
+        <!--app:met_floatingLabel="highlight" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/courseCategoriesRecyclerView"
@@ -89,11 +89,11 @@
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <!--<Button-->
         <!--android:layout_width="wrap_content"-->

@@ -1,5 +1,7 @@
 package com.tash_had.uoftstudent;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static com.tash_had.uoftstudent.MyCoursesAdapter.test.AZZZ;
+
 /**
  * Created by tash-had on 2017-11-22.
  */
 
 class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder> {
     private Course[] courses;
+    private Context context;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -47,6 +52,14 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         }
         String courseDetailText = Double.toString(courseAvg) + " | " + grade;
         holder.courseDetail.setText(courseDetailText);
+        holder.courseBtn1.setText("Temp. Edit Course. Change back to View Course!");
+        holder.courseBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EditCourseController.class);
+                intent.putExtra("purpose", "edit");
+            }
+        });
     }
 
     @Override
@@ -72,8 +85,9 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         }
     }
 
-    public MyCoursesAdapter(Course[] courses) {
+    public MyCoursesAdapter(Course[] courses, Context context) {
         this.courses = courses;
+        this.context = context;
     }
 
 }

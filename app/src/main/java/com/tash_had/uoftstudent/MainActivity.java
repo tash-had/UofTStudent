@@ -1,17 +1,14 @@
 package com.tash_had.uoftstudent;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -43,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         homeScreenToolBar.setTitle("Home");
         homeScreenToolBar.setTitleTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
         setSupportActionBar(homeScreenToolBar);
+//        homeScreenToolBar.inflateMenu(R.menu.toolbar_actions);
 
         // Set test student
         SessionData.sessionStudent = CodeTest.testStudent();
@@ -55,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         prepRecyclerView();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_actions, menu);
+        return true;
+    }
+
     private void prepRecyclerView(){
         // Setup recyclerview
         mRecyclerView = findViewById(R.id.main_activity_recycler_view);
@@ -64,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new MyCoursesAdapter((Course[]) SessionData.getSessionStudent().getCourses());
+        mAdapter = new MyCoursesAdapter((Course[]) SessionData.getSessionStudent().getCourses(),
+                this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -125,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        Intent i = new Intent(MainActivity.this, AddAssessment.class);
+        Intent i = new Intent(MainActivity.this, EditCourseController.class);
         startActivity(i);
     }
 }
