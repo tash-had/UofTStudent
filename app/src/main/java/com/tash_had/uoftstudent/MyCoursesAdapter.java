@@ -56,7 +56,7 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         holder.courseBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditCourseController.class);
+                Intent intent = new Intent(context, CourseViewController.class);
                 intent.putExtra("purpose", "edit");
             }
         });

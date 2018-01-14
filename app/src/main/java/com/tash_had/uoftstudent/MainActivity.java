@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnClick(View view) {
-        Intent i = new Intent(MainActivity.this, EditCourseController.class);
+        Intent i = new Intent(MainActivity.this, CourseViewController.class);
         startActivity(i);
     }
 }

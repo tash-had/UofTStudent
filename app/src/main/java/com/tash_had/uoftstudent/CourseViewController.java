@@ -10,10 +10,11 @@ import android.support.v7.widget.RecyclerView;
 /*
 TODO: LEARN https://developer.android.com/training/transitions/index.html !
  */
-public class EditCourseController extends AppCompatActivity{
+public class CourseViewController extends AppCompatActivity{
     private RecyclerView courseCategoriesRecyclerView;
     private RecyclerView.LayoutManager courseCategoriesLayoutManager;
     private RecyclerView.Adapter courseCategoriesAdapter;
+    private CourseViewPurpose courseViewPurpose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,11 @@ public class EditCourseController extends AppCompatActivity{
         }
 
         Intent intentRecieved = getIntent();
-        if (intentRecieved.getExtras() != null && intentRecieved.getExtras().containsKey("purpose")){
+        if (intentRecieved.getExtras() != null && intentRecieved.getExtras().containsKey("purpose")){3
             String purpose = (String) intentRecieved.getExtras().get("purpose");
-
             if (purpose != null && purpose.equals("edit")){
-                
+                courseViewPurpose  = CourseViewPurpose.EDIT_COURSE;
             }
-
         }
         courseCategoriesRecyclerView = findViewById(R.id.courseCategoriesRecyclerView);
 
