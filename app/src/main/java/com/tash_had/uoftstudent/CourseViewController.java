@@ -36,7 +36,7 @@ public class EditCourseController extends AppCompatActivity{
             String purpose = (String) intentRecieved.getExtras().get("purpose");
 
             if (purpose != null && purpose.equals("edit")){
-                if
+                
             }
 
         }
