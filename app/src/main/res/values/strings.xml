@@ -13,4 +13,7 @@
     <string name="course_weight_placeholder">Credit Weight (ie. 0.5)</string>
     <string name="action_add_course">Add Course</string>
     <string name="action_edit_course">Edit Course</string>
+
+    <string name="course_name_label">Course</string>
+    <string name="course_weight_label">Weight</string>
 </resources>
