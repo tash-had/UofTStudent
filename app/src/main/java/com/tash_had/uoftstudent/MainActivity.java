@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         homeScreenToolBar.setTitle("Home");
         homeScreenToolBar.setTitleTextColor(ResourcesCompat.getColor(getResources(), R.color.white, null));
         setSupportActionBar(homeScreenToolBar);
-//        homeScreenToolBar.inflateMenu(R.menu.toolbar_actions);
+//        homeScreenToolBar.inflateMenu(R.menu.courses_toolbar_actions);
 
         // Set test student
         SessionData.sessionStudent = CodeTest.testStudent();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_actions, menu);
+        inflater.inflate(R.menu.courses_toolbar_actions, menu);
         return true;
     }
 

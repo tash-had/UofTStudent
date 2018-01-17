@@ -3,8 +3,8 @@
 
     <string name="course_card_title_default">Card Title</string>
     <string name="course_card_detail_default">Card Subtitle</string>
-    <string name="course_card_button_1_text">View Course</string>
-    <string name="course_card_button_2_text">Add Grade</string>
+    <string name="course_card_button_1_text">View</string>
+    <string name="course_card_button_2_text">Edit</string>
     <string name="course_card_content_desc">grade image</string>
     <string name="category_name_placeholder">Category Name</string>
     <string name="category_weight_placeholder">Weight (%)</string>
@@ -12,4 +12,5 @@
     <string name="course_name_placeholder">Course Name</string>
     <string name="course_weight_placeholder">Credit Weight (ie. 0.5)</string>
     <string name="action_add_course">Add Course</string>
+    <string name="action_edit_course">Edit Course</string>
 </resources>

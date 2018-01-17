@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_main_1_1"
+    android:id="@+id/course_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/main_card_margin_vertical"
-    android:layout_marginStart="@dimen/main_card_margin_horizontal"
     android:layout_marginEnd="@dimen/main_card_margin_horizontal"
+    android:layout_marginStart="@dimen/main_card_margin_horizontal"
     android:layout_marginTop="@dimen/main_card_margin_vertical"
     android:foreground="?attr/selectableItemBackground"
     card_view:cardCornerRadius="@dimen/card_recycler_corner_radius"
@@ -48,38 +48,44 @@
             android:layout_marginTop="@dimen/card_button_margin"
             android:text="@string/course_card_detail_default" />
 
-        <Button
-            android:id="@+id/course_card_btn_1"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/course_card_detail"
-            android:layout_margin="@dimen/card_button_margin"
-            android:text="@string/course_card_button_1_text"
-            android:textColor="@color/colorAccent" />
+        <!--<Button-->
+            <!--android:id="@+id/course_card_btn_1"-->
+            <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/course_card_detail"-->
+            <!--android:layout_margin="@dimen/card_button_margin"-->
+            <!--android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"-->
+            <!--android:drawablePadding="4sp"-->
+            <!--android:drawableStart="@mipmap/ic_remove_red_eye_black_24dp"-->
+            <!--android:text="@string/course_card_button_1_text"-->
+            <!--android:textColor="@color/colorAccent" />-->
 
-        <Button
-            android:id="@+id/course_card_btn_2"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/course_card_detail"
-            android:layout_marginBottom="@dimen/card_button_margin"
-            android:layout_marginTop="@dimen/card_button_margin"
-            android:layout_toEndOf="@id/course_card_btn_1"
-            android:layout_toRightOf="@id/course_card_btn_1"
-            android:text="@string/course_card_button_2_text"
-            android:textColor="@color/colorAccent" />
+        <!--<Button-->
+            <!--android:id="@+id/course_card_btn_2"-->
+            <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/course_card_detail"-->
+            <!--android:layout_marginBottom="@dimen/card_button_margin"-->
+            <!--android:layout_marginTop="@dimen/card_button_margin"-->
+            <!--android:layout_toEndOf="@id/course_card_btn_1"-->
+            <!--android:layout_toRightOf="@id/course_card_btn_1"-->
+            <!--android:drawableLeft="@mipmap/ic_mode_edit_black_24dp"-->
+            <!--android:drawablePadding="4sp"-->
+            <!--android:drawableStart="@mipmap/ic_mode_edit_black_24dp"-->
+            <!--android:text="@string/course_card_button_2_text"-->
+            <!--android:textColor="@color/colorAccent" />-->
 
         <ImageView
             android:id="@+id/course_card_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="26dp"
-            android:layout_marginStart="26dp"
-            android:layout_toEndOf="@+id/course_card_btn_2"
-            android:layout_toRightOf="@+id/course_card_btn_2"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             card_view:srcCompat="@drawable/g_letter_icon" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

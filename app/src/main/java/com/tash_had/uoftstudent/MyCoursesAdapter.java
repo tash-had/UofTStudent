@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import static com.tash_had.uoftstudent.MyCoursesAdapter.test.AZZZ;
 
 /**
  * Created by tash-had on 2017-11-22.
@@ -24,6 +24,16 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_card_view,
                 parent, false);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView courseTitleTv = view.findViewById(R.id.course_card_title);
+                Intent intent = new Intent(context, CourseViewController.class);
+                intent.putExtra("course", courseTitleTv.getText());
+                context.startActivity(intent);
+
+            }
+        });
         return new ViewHolder(view);
     }
 
@@ -52,15 +62,25 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         }
         String courseDetailText = Double.toString(courseAvg) + " | " + grade;
         holder.courseDetail.setText(courseDetailText);
-        holder.courseBtn1.setText("Temp. Edit Course. Change back to View Course!");
-        holder.courseBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, CourseViewController.class);
-                intent.putExtra("purpose", "edit");
-            }
-        });
+//        holder.courseBtn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//               viewCourse(false);
+//            }
+//        });
+//        holder.courseBtn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                viewCourse(true);
+//            }
+//        });
     }
+
+//    private void viewCourse(boolean editMode){
+//        Intent intent = new Intent(context, CourseViewController.class);
+//        intent.putExtra("editMode", editMode);
+//        context.startActivity(intent);
+//    }
 
     @Override
     public int getItemCount() {
@@ -71,8 +91,7 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
         public TextView courseTitle;
         public TextView courseDetail;
         public ImageView courseIcon;
-        public Button courseBtn1;
-        public Button courseBtn2;
+
 
 
         public ViewHolder(View itemView) {
@@ -80,8 +99,6 @@ class MyCoursesAdapter extends RecyclerView.Adapter<MyCoursesAdapter.ViewHolder>
             courseTitle = itemView.findViewById(R.id.course_card_title);
             courseDetail = itemView.findViewById(R.id.course_card_detail);
             courseIcon = itemView.findViewById(R.id.course_card_icon);
-            courseBtn1 = itemView.findViewById(R.id.course_card_btn_1);
-            courseBtn2 = itemView.findViewById(R.id.course_card_btn_2);
         }
     }
 

@@ -6,21 +6,32 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+
 
 /*
 TODO: LEARN https://developer.android.com/training/transitions/index.html !
+ */
+
+/**
+ * A controller for the individual course-view screen
  */
 public class CourseViewController extends AppCompatActivity{
     private RecyclerView courseCategoriesRecyclerView;
     private RecyclerView.LayoutManager courseCategoriesLayoutManager;
     private RecyclerView.Adapter courseCategoriesAdapter;
-    private CourseViewPurpose courseViewPurpose;
+    private String course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_course_view);
 
+        Intent intentRecieved = getIntent();
+        if (intentRecieved.getExtras() != null && intentRecieved.getExtras().containsKey("course")){
+            course = (String) intentRecieved.getExtras().get("course");
+        }
 
         android.support.v7.widget.Toolbar homeScreenToolBar = findViewById(R.id.form_toolbar);
         homeScreenToolBar.setTitle("");
@@ -31,14 +42,8 @@ public class CourseViewController extends AppCompatActivity{
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        
 
-        Intent intentRecieved = getIntent();
-        if (intentRecieved.getExtras() != null && intentRecieved.getExtras().containsKey("purpose")){3
-            String purpose = (String) intentRecieved.getExtras().get("purpose");
-            if (purpose != null && purpose.equals("edit")){
-                courseViewPurpose  = CourseViewPurpose.EDIT_COURSE;
-            }
-        }
         courseCategoriesRecyclerView = findViewById(R.id.courseCategoriesRecyclerView);
 
         courseCategoriesLayoutManager = new LinearLayoutManager(this);
@@ -49,19 +54,11 @@ public class CourseViewController extends AppCompatActivity{
     }
 
 
-//    private void initValidationEt() {
-//        final MaterialEditText validationEt = (MaterialEditText) findViewById(R.id.validationEt);
-//        validationEt.addValidator(new RegexpValidator("Only Integer Valid!", "\\d+"));
-//        final Button validateBt = (Button) findViewById(R.id.validateBt);
-//        validateBt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // validate
-//                validationEt.validate();
-//            }
-//        });
-//    }
-    public enum CourseViewPurpose{
-        ADD_COURSE, EDIT_COURSE
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.course_view_toolbar_actions, menu);
+        return true;
     }
+
 }
