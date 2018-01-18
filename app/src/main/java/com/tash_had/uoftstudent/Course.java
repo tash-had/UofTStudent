@@ -2,6 +2,7 @@ package com.tash_had.uoftstudent;
 
 import android.support.annotation.Nullable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,6 +31,7 @@ public class Course {
     /*
      * TODO:
      * Fix lint errors
+     * Write unit tests
      */
 
     public Course(String courseName, double courseCreditWeight, Student student){
@@ -352,4 +354,12 @@ public class Course {
         return getCategoryToAssessmentMap().get(category);
     }
 
+    public double getCategoryAverage(String category){
+        double sum = 0.0;
+        ArrayList<Object[]> categoryAssessments = getCategoryAssessments(category);
+        for (Object[] assessment : categoryAssessments){
+            sum += (double) assessment[1];
+        }
+        return sum / categoryAssessments.size();
+    }
 }

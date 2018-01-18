@@ -17,6 +17,15 @@ public class Student {
         return courses.toArray(new Course[courses.size()]);
     }
 
+    public Course getCourse(String courseName) throws CourseNotFoundException {
+        for (Course c : courses){
+            if (c.getCourseName().equals(courseName)){
+                return c;
+            }
+        }
+        throw new CourseNotFoundException(courseName + " was not found in this students courses");
+    }
+
     public void addNewCourse(Course course){
         courses.add(course);
     }

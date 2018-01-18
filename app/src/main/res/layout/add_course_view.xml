@@ -39,6 +39,7 @@
         <!--android:textSize="14sp" />-->
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/course_view_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/course_name_placeholder"
@@ -59,6 +60,7 @@
         <!--android:textSize="14sp" />-->
 
         <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/course_view_credit_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/course_weight_placeholder"

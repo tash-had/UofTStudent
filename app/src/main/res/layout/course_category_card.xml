@@ -30,10 +30,10 @@
             android:layout_margin="@dimen/text_margin"
             android:layout_marginStart="8dp"
             android:hint="@string/category_name_placeholder"
+            android:singleLine="true"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/categoryWeightEt"
@@ -50,23 +50,21 @@
             card_view:met_validateOnFocusLost="false"
             android:layout_marginLeft="44dp" />
 
-        <Button
-            android:id="@+id/addCategoryDoneBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="23dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="22dp"
-            android:backgroundTint="@color/white"
-            android:text="@string/done_btn_placeholder"
-            android:textColor="@color/primary"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/categoryWeightEt"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="16dp" />
+        <!--<Button-->
+            <!--android:id="@+id/addCategoryDoneBtn"-->
+            <!--android:layout_width="88dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="23dp"-->
+            <!--android:layout_marginEnd="17dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="22dp"-->
+            <!--android:backgroundTint="@color/white"-->
+            <!--android:text="@string/done_btn_placeholder"-->
+            <!--android:textColor="@color/primary"-->
+            <!--card_view:layout_constraintBottom_toBottomOf="parent"-->
+            <!--card_view:layout_constraintEnd_toEndOf="parent"-->
+            <!--card_view:layout_constraintStart_toEndOf="@+id/categoryWeightEt"-->
+            <!--card_view:layout_constraintTop_toTopOf="parent" />-->
 
         <!--<ImageButton-->
             <!--android:id="@+id/imageButton"-->

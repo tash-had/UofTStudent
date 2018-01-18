@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/course__id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,8 +11,7 @@
     android:layout_marginTop="@dimen/main_card_margin_vertical"
     android:background="@color/white"
     card_view:cardCornerRadius="2dp"
-    card_view:cardElevation="2dp">
-
+    card_view:cardElevation="1dp">
 
 
     <android.support.constraint.ConstraintLayout
@@ -28,49 +28,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/text_margin"
+            android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:hint="@string/category_name_placeholder"
+            android:paddingRight="10sp"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="8dp" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/categoryWeightTv"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="19dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/text_margin"
-            android:layout_marginStart="44dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/category_weight_placeholder"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/categoryNameTv"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="44dp" />
-
-        <Button
-            android:id="@+id/labelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="21dp"
-            android:backgroundTint="@color/white"
-            android:text="Done"
-            android:textColor="@color/primary"
-            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/categoryWeightTv"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="16dp" />
+            card_view:layout_constraintStart_toEndOf="@+id/categoryNameTv"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
 
         <!--<ImageButton-->
-            <!--android:id="@+id/imageButton"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:layout_editor_absoluteX="294dp"-->
-            <!--app:layout_editor_absoluteY="19dp"-->
-            <!--card_view:srcCompat="@drawable/ic_done_black_64dp_1x" />-->
+        <!--android:id="@+id/imageButton"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_editor_absoluteX="294dp"-->
+        <!--app:layout_editor_absoluteY="19dp"-->
+        <!--card_view:srcCompat="@drawable/ic_done_black_64dp_1x" />-->
 
     </android.support.constraint.ConstraintLayout>
 

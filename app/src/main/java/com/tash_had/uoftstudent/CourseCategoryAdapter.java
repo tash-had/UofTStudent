@@ -74,7 +74,7 @@ class CourseCategoryAdapter extends RecyclerView.Adapter<CourseCategoryAdapter.V
             if (viewType == 1){
                 categoryNameEt = itemView.findViewById(R.id.categoryNameTv);
                 categoryWeightEt = itemView.findViewById(R.id.categoryWeightEt);
-                addCategoryDoneBtn = itemView.findViewById(R.id.addCategoryDoneBtn);
+//                addCategoryDoneBtn = itemView.findViewById(R.id.addCategoryDoneBtn);
             }
         }
     }
