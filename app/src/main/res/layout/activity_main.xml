@@ -25,9 +25,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_screen_toolbar" />
-    <android.support.v7.widget.AppCompatButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:onClick="btnClick"/>
 
 </android.support.constraint.ConstraintLayout>

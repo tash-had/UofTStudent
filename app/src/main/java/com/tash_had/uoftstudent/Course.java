@@ -2,9 +2,9 @@ package com.tash_had.uoftstudent;
 
 import android.support.annotation.Nullable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by tash-had on 2017-11-09.
@@ -19,8 +19,8 @@ public class Course {
      * Category = Labs
      * ArrayList of assessmentsAndGrades: ["lab1", 80], ["lab2", 93], ["lab3", 70]
      * */
-    private HashMap<String, ArrayList<Object[]>> categoryToAssessmentMap;
-    private HashMap<String, Double> categoryToWeightMap;
+    private LinkedHashMap<String, ArrayList<Object[]>> categoryToAssessmentMap;
+    private LinkedHashMap<String, Double> categoryToWeightMap;
 
     private String courseName;
     private double courseCreditWeight;
@@ -35,8 +35,8 @@ public class Course {
      */
 
     public Course(String courseName, double courseCreditWeight, Student student){
-        setCategoryToAssessmentMap(new HashMap<String, ArrayList<Object[]>>());
-        setCategoryToWeightMap(new HashMap<String, Double>());
+        setCategoryToAssessmentMap(new LinkedHashMap<String, ArrayList<Object[]>>());
+        setCategoryToWeightMap(new LinkedHashMap<String, Double>());
         setCourseName(courseName);
         setCourseCreditWeight(courseCreditWeight);
         this.student = student;
@@ -247,7 +247,7 @@ public class Course {
      *
      * @return a hashmap mapping each category name, to an arraylist of assessments
      */
-    private HashMap<String, ArrayList<Object[]>> getCategoryToAssessmentMap() {
+    private LinkedHashMap<String, ArrayList<Object[]>> getCategoryToAssessmentMap() {
         return categoryToAssessmentMap;
     }
 
@@ -256,7 +256,7 @@ public class Course {
      *
      * @param categoryToAssessmentMap the map to set to
      */
-    private void setCategoryToAssessmentMap(HashMap<String, ArrayList<Object[]>>
+    private void setCategoryToAssessmentMap(LinkedHashMap<String, ArrayList<Object[]>>
                                                     categoryToAssessmentMap) {
         this.categoryToAssessmentMap = categoryToAssessmentMap;
     }
@@ -266,7 +266,7 @@ public class Course {
      *
      * @return a hashmap mapping category names in this course to their corresponding weights
      */
-    public HashMap<String, Double> getCategoryToWeightMap() {
+    public LinkedHashMap<String, Double> getCategoryToWeightMap() {
         return categoryToWeightMap;
     }
 
@@ -275,7 +275,7 @@ public class Course {
      *
      * @param categoryToWeightMap he hasmap to initialize categoryToWeightMap to
      */
-    private void setCategoryToWeightMap(HashMap<String, Double> categoryToWeightMap) {
+    private void setCategoryToWeightMap(LinkedHashMap<String, Double> categoryToWeightMap) {
         this.categoryToWeightMap = categoryToWeightMap;
     }
 

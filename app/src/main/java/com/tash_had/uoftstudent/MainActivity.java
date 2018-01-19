@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -52,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
         prepRecyclerView();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add_course:
+                addCourseClick();
+                break;
+        }
+        return true;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
-    public void btnClick(View view) {
-        Intent i = new Intent(MainActivity.this, CourseViewController.class);
-        startActivity(i);
+    public void addCourseClick(){
+        Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
     }
 }

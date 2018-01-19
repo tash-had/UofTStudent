@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by tash-had on 2017-11-27.
@@ -20,31 +21,30 @@ class CourseCategoryAdapter extends RecyclerView.Adapter<CourseCategoryAdapter.V
 
     @Override
     public CourseCategoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
-        switch (viewType){
-            case 0:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_view_label_card,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_category_card,
                         parent, false);
-                return new ViewHolder(view, viewType);
-            case 1:
-            default:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_category_card,
-                        parent, false);
-                return new ViewHolder(view, viewType);
-        }
+                return new ViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(CourseCategoryAdapter.ViewHolder holder, int position) {
-        if (position < categoryNames.length && position != 0){
+        if (position < categoryNames.length){
             holder.categoryNameEt.setText(categoryNames[position]);
-            holder.categoryNameEt.setEnabled(false);
             String category = categoryNames[position];
             Double weight = categoryToWeightMap.get(category);
             holder.categoryWeightEt.setText(String.valueOf(weight.toString()));
+            holder.categoryNameEt.setEnabled(false);
             holder.categoryWeightEt.setEnabled(false);
+        }else{
+            holder.categoryNameEt.setText("");
+            holder.categoryWeightEt.setText("");
+            holder.categoryNameEt.setEnabled(true);
+            holder.categoryWeightEt.setEnabled(true);
         }
+
+
+
     }
 
     @Override
@@ -53,15 +53,6 @@ class CourseCategoryAdapter extends RecyclerView.Adapter<CourseCategoryAdapter.V
         return categoryToWeightMap.keySet().size() + 1;
     }
 
-    @Override
-    public int getItemViewType(int position){
-        if (position == 0){
-            return 0;
-        }else{
-            return 1;
-        }
-
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public MaterialEditText categoryNameEt;
@@ -69,18 +60,16 @@ class CourseCategoryAdapter extends RecyclerView.Adapter<CourseCategoryAdapter.V
         public Button addCategoryDoneBtn;
 
 
-        public ViewHolder(View itemView, int viewType) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            if (viewType == 1){
                 categoryNameEt = itemView.findViewById(R.id.categoryNameTv);
                 categoryWeightEt = itemView.findViewById(R.id.categoryWeightEt);
 //                addCategoryDoneBtn = itemView.findViewById(R.id.addCategoryDoneBtn);
             }
-        }
     }
 
 
-    public CourseCategoryAdapter(HashMap<String, Double> categoryToWeightMap){
+    public CourseCategoryAdapter(LinkedHashMap<String, Double> categoryToWeightMap){
         categoryNames = categoryToWeightMap.keySet().toArray(
                 new String[categoryToWeightMap.keySet().size()]
         );
